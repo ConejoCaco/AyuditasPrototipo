@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Ayuditas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="login">
+    <h1>Ayuditas</h1>
+    <h2>Iniciar sesión</h2>
+    <input type="text" id="username" placeholder="Tu nombre">
+    <button onclick="login()">Entrar</button>
+  </div>
+
+  <div id="app" style="display:none;">
+    <div class="header">
+      <h1>Ayuditas</h1>
+      <div class="bienvenida">
+        <span>Bienvenido, <strong id="userDisplay"></strong></span>
+        <button class="logout" onclick="logout()">Cerrar sesión</button>
+      </div>
+    </div>
+
+    <button onclick="toggleFormulario()" class="toggle-form">Nueva tutoría</button>
+
+    <div id="formularioTutorias" style="display:none;">
+      <h3>Crear Tutoría</h3>
+      <input type="text" id="subject" placeholder="Asignatura o tema">
+      <input type="date" id="date">
+      <input type="time" id="startTime">
+      <input type="time" id="endTime">
+      <textarea id="desc" placeholder="Descripción" rows="3"></textarea>
+      <button onclick="crearTutoria()">Crear Tutoría</button>
+    </div>
+
+    <h3>Tutorías Disponibles</h3>
+    <ul id="listaTutorias"></ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
