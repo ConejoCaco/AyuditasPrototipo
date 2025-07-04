@@ -3,41 +3,115 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Ayuditas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayuditas - Tu Plataforma de Tutorías</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div id="login">
-    <h1>Ayuditas</h1>
-    <h2>Iniciar sesión</h2>
-    <input type="text" id="username" placeholder="Tu nombre">
-    <button onclick="login()">Entrar</button>
+  <div id="login" class="page active">
+    <div class="login-container">
+      <h1>Ayuditas</h1>
+      <h2>Iniciar sesión</h2>
+      <input type="text" id="username" placeholder="Tu nombre">
+      <button onclick="login()">Entrar</button>
+    </div>
   </div>
 
   <div id="app" style="display:none;">
-    <div class="header">
-      <h1>Ayuditas</h1>
-      <div class="bienvenida">
-        <span>Bienvenido, <strong id="userDisplay"></strong></span>
-        <button class="logout" onclick="logout()">Cerrar sesión</button>
+    <header>
+      <div class="header-content">
+        <h1>Ayuditas</h1>
+        <div class="bienvenida">
+          <span>Bienvenido, <strong id="userDisplay"></strong></span>
+          <button class="logout" onclick="logout()">Cerrar sesión</button>
+        </div>
+      </div>
+    </header>
+
+    <nav>
+      <button onclick="showPage('tutorias')" class="nav-button active">Tutorías</button>
+      <button onclick="showPage('perfil')" class="nav-button">Mi Perfil</button>
+      <button onclick="showPage('crear-tutoria')" class="nav-button">Nueva Tutoría</button>
+    </nav>
+
+    <main class="content">
+      <div id="page-tutorias" class="page active">
+        <h3>Tutorías Disponibles</h3>
+        <ul id="listaTutorias"></ul>
+      </div>
+
+      <div id="page-crear-tutoria" class="page">
+        <div id="formularioTutorias">
+          <h3>Crear Tutoría</h3>
+          <input type="text" id="subject" placeholder="Asignatura o tema">
+          <input type="date" id="date">
+          <input type="time" id="startTime">
+          <input type="time" id="endTime">
+          <textarea id="desc" placeholder="Descripción" rows="3"></textarea>
+          <button onclick="crearTutoria()">Crear Tutoría</button>
+        </div>
+      </div>
+
+      <div id="page-perfil" class="page">
+        <h3>Mis Tutorías Creadas</h3>
+        <ul id="misTutoriasCreadas"></ul>
+
+        <h3>Tutorías en las que participo</h3>
+        <ul id="misTutoriasParticipo"></ul>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Ayuditas. Todos los derechos reservados.</p>
+    </footer>
+
+    <div id="editTutoriaModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button" onclick="closeModal('editTutoriaModal')">&times;</span>
+        <h3>Editar Tutoría</h3>
+        <input type="hidden" id="editTutoriaId">
+        <input type="text" id="editSubject" placeholder="Asignatura o tema">
+        <input type="date" id="editDate">
+        <input type="time" id="editStartTime">
+        <input type="time" id="editEndTime">
+        <textarea id="editDesc" placeholder="Descripción" rows="3"></textarea>
+        <button onclick="saveEditedTutoria()">Guardar Cambios</button>
       </div>
     </div>
 
-    <button onclick="toggleFormulario()" class="toggle-form">Nueva tutoría</button>
-
-    <div id="formularioTutorias" style="display:none;">
-      <h3>Crear Tutoría</h3>
-      <input type="text" id="subject" placeholder="Asignatura o tema">
-      <input type="date" id="date">
-      <input type="time" id="startTime">
-      <input type="time" id="endTime">
-      <textarea id="desc" placeholder="Descripción" rows="3"></textarea>
-      <button onclick="crearTutoria()">Crear Tutoría</button>
+    <div id="feedbackModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button" onclick="closeModal('feedbackModal')">&times;</span>
+        <h3>Dejar Feedback</h3>
+        <input type="hidden" id="feedbackTutoriaId">
+        <p>Tu Calificación:</p>
+        <div id="feedbackStars" class="estrellas">
+          <span data-value="1">★</span>
+          <span data-value="2">★</span>
+          <span data-value="3">★</span>
+          <span data-value="4">★</span>
+          <span data-value="5">★</span>
+        </div>
+        <input type="hidden" id="selectedRating">
+        <textarea id="feedbackComment" placeholder="Comentario (opcional)" rows="3"></textarea>
+        <button onclick="submitFeedback()">Enviar Feedback</button>
+      </div>
     </div>
 
-    <h3>Tutorías Disponibles</h3>
-    <ul id="listaTutorias"></ul>
+    <div id="confirmDeleteModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button" onclick="closeModal('confirmDeleteModal')">&times;</span>
+        <h3>Confirmar Eliminación</h3>
+        <p>¿Estás seguro de que quieres borrar esta tutoría?</p>
+        <input type="hidden" id="tutoriaToDeleteId">
+        <div class="modal-actions">
+          <button onclick="confirmDeleteTutoria()" class="delete-button">Sí, Borrar</button>
+          <button onclick="closeModal('confirmDeleteModal')" class="cancel-button">Cancelar</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <script src="script.js"></script>
