@@ -263,6 +263,29 @@ ul {
   background-color: #8e24aa;
 }
 
+/* NUEVO: Estilo para el botón Terminar Tutoría */
+.terminate-button {
+  background-color: #607d8b;
+  /* Un gris azulado */
+}
+
+.terminate-button:hover {
+  background-color: #455a64;
+}
+
+/* NUEVO: Estilo para el nombre del creador clicable */
+.creator-name {
+  color: #1976d2;
+  /* Un color azul para indicar que es clicable */
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.creator-name:hover {
+  color: #1565c0;
+}
+
+
 /* --- Rating Stars --- */
 .estrellas {
   display: inline-block;
@@ -401,4 +424,60 @@ ul {
 
 .cancel-button:hover {
   background-color: #424242;
+}
+
+/* NUEVO: Estilos para el Modal de Perfil de Otro Usuario */
+#userProfileModal .modal-content {
+  max-width: 600px;
+  /* Un poco más ancho si hay muchas tutorías */
+}
+
+#userProfileTutoriasList {
+  text-align: left;
+  /* Alinear la lista de tutorías a la izquierda */
+  margin-top: 15px;
+}
+
+#userProfileTutoriasList .tutoria-item {
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 0.95em;
+}
+
+#userProfileTutoriasList .tutoria-item strong {
+  font-size: 1em;
+}
+
+/* Añadir al final de style.css o en una sección relevante */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Centra los elementos horizontalmente */
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  /* Para posicionar el info de credenciales */
+}
+
+.credentials-info {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  text-align: left;
+  font-size: 0.9em;
+  color: #555;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.credentials-info p {
+  margin: 5px 0;
 }
