@@ -9,12 +9,42 @@
 </head>
 
 <body>
-  <div id="login" class="page active">
+  <div id="login" class="page active" style="display: flex; justify-content: center; align-items: center; gap: 40px; min-height: 100vh; background-color: #e8f5e9;">
+    <div class="credentials-panel" style="
+        background-color: #ffffff;
+        padding: 25px; /* Aumentado el padding para que se vea más como un panel */
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        text-align: left;
+        width: 100%;
+        max-width: 300px; /* Ancho máximo para el panel */
+        box-sizing: border-box; /* Asegura que padding no aumente el ancho total */
+    ">
+      <h3 style="margin-top: 0; color: #2e7d32;">Credenciales de prueba</h3>
+      <p style="margin: 10px 0;"><strong>Administrador:</strong> Admin</p>
+      <p style="margin: 10px 0;"><strong>Contraseña:</strong> admin</p>
+      <p style="margin: 10px 0;"><strong>Cualquier otro usuario:</strong> solo el nombre</p>
+    </div>
+
     <div class="login-container">
       <h1>Ayuditas</h1>
       <h2>Iniciar sesión</h2>
       <input type="text" id="username" placeholder="Tu nombre">
       <button onclick="login()">Entrar</button>
+    </div>
+  </div>
+
+  <div id="loginConfirmModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal('loginConfirmModal')">&times;</span>
+      <h3>Verificación de Administrador</h3>
+      <p>Ingresa la contraseña para continuar como <strong id="confirmUserDisplay"></strong>:</p>
+      <input type="password" id="adminPassword" placeholder="Contraseña de Admin">
+      <p id="passwordError" style="color: red; margin-top: 10px; display: none;">Contraseña incorrecta.</p>
+      <div class="modal-actions">
+        <button onclick="cancelLogin()" class="cancel-button">Cancelar</button>
+        <button onclick="checkAdminPassword()" class="join-button">Iniciar Sesión</button>
+      </div>
     </div>
   </div>
 
@@ -31,8 +61,8 @@
 
     <nav>
       <button onclick="showPage('tutorias')" class="nav-button active">Tutorías</button>
-      <button onclick="showPage('perfil')" class="nav-button">Mi Perfil</button>
-      <button onclick="showPage('crear-tutoria')" class="nav-button">Nueva Tutoría</button>
+      <button id="profileNavButton" onclick="showPage('perfil')" class="nav-button">Mi Perfil</button>
+      <button id="newTutoriaNavButton" onclick="showPage('crear-tutoria')" class="nav-button">Nueva Tutoría</button>
     </nav>
 
     <main class="content">
@@ -109,6 +139,29 @@
           <button onclick="confirmDeleteTutoria()" class="delete-button">Sí, Borrar</button>
           <button onclick="closeModal('confirmDeleteModal')" class="cancel-button">Cancelar</button>
         </div>
+      </div>
+    </div>
+
+    <div id="confirmTerminateModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button" onclick="closeModal('confirmTerminateModal')">&times;</span>
+        <h3>Terminar Tutoría</h3>
+        <p>¿Estás seguro de que quieres terminar esta tutoría? No aparecerá más en la lista de tutorías disponibles.</p>
+        <input type="hidden" id="tutoriaToTerminateId">
+        <div class="modal-actions">
+          <button onclick="confirmTerminateTutoria()" class="terminate-button">Sí, Terminar</button>
+          <button onclick="closeModal('confirmTerminateModal')" class="cancel-button">Cancelar</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="userProfileModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button" onclick="closeModal('userProfileModal')">&times;</span>
+        <h3 id="userProfileName"></h3>
+        <p id="userProfileAvgRating"></p>
+        <h4>Tutorías Realizadas:</h4>
+        <ul id="userProfileTutoriasList"></ul>
       </div>
     </div>
 
